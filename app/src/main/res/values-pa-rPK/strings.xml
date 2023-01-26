@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">سبق ریکارڈ</string>
+    <string name="app_name">Save Sabaq</string>
+    <string name="add">Add</string>
+    <string name="add_student_title">Enroll Students</string>
 </resources>

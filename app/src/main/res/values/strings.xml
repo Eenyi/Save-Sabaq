@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Save Sabaq</string>
+    <string name="app_name">سبق ریکارڈ</string>
+    <string name="add">اندراج</string>
+    <string name="add_student_title">نئے طالب علموں کا اندراج</string>
 </resources>

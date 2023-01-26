@@ -3,6 +3,7 @@ package com.example.savesabaq;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,6 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.addStudent:
                 //add Student Functionality
                 AlertDialog.Builder addStudent_dialogue = new AlertDialog.Builder(MainActivity.this);
+                addStudent_dialogue.setMessage(R.string.add_student_title);
+                addStudent_dialogue.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                addStudent_dialogue.show();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());
