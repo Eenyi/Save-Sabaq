@@ -45,8 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.addStudent:
                 //add Student Functionality
+                LayoutInflater lf = getLayoutInflater();
+                View layout = lf.inflate(R.layout.add_record, (ViewGroup) findViewById(R.id.addRecord_layout));
                 AlertDialog.Builder addStudent_dialogue = new AlertDialog.Builder(MainActivity.this);
                 addStudent_dialogue.setMessage(R.string.add_student_title);
+                addStudent_dialogue.setView(layout);
                 addStudent_dialogue.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
