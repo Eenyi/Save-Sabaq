@@ -7,18 +7,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton addRecord, addStudent, shareApp, gitLink;
+    TextView studentName;
+    DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new DBHelper(MainActivity.this);
         addRecord = findViewById(R.id.addRecord);
         addRecord.setOnClickListener(this);
         addStudent = findViewById(R.id.addStudent);
@@ -42,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.shareApp:
                 break;
             case R.id.addRecord:
+                intent = new Intent(MainActivity.this, StudentView.class);
+                startActivity(intent);
                 break;
             case R.id.addStudent:
                 //add Student Functionality
@@ -50,9 +57,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 AlertDialog.Builder addStudent_dialogue = new AlertDialog.Builder(MainActivity.this);
                 addStudent_dialogue.setMessage(R.string.add_student_title);
                 addStudent_dialogue.setView(layout);
+                studentName = findViewById(R.id.studentNameField);
                 addStudent_dialogue.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+//                        Log.d("error", studentName.getText().toString());
+                        if (db.addStudent("Test Data")) {
+                            Toast.makeText(MainActivity.this, "Student Enrolled", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Error occured in enrolling", Toast.LENGTH_SHORT).show();
+                        }
                         dialog.cancel();
                     }
                 });
