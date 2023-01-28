@@ -11,13 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton addRecord, addStudent, shareApp, gitLink;
-    TextView studentName;
     DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +52,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.addStudent:
                 //add Student Functionality
-                LayoutInflater lf = getLayoutInflater();
-                View layout = lf.inflate(R.layout.add_record, (ViewGroup) findViewById(R.id.addRecord_layout));
                 AlertDialog.Builder addStudent_dialogue = new AlertDialog.Builder(MainActivity.this);
                 addStudent_dialogue.setMessage(R.string.add_student_title);
+                LayoutInflater lf = this.getLayoutInflater();
+                View layout = lf.inflate(R.layout.add_record, (ViewGroup) findViewById(R.id.addRecord_layout));
                 addStudent_dialogue.setView(layout);
-                studentName = findViewById(R.id.studentNameField);
+                final EditText input = (EditText) layout.findViewById(R.id.studentNameField);
                 addStudent_dialogue.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        Log.d("error", studentName.getText().toString());
-                        if (db.addStudent("Test Data")) {
+                        if (db.addStudent(input.getText().toString())) {
                             Toast.makeText(MainActivity.this, "Student Enrolled", Toast.LENGTH_SHORT).show();
                         }
                         else {

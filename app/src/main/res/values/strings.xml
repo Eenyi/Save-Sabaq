@@ -3,4 +3,5 @@
     <string name="add"> درج کریں</string>
     <string name="add_student_title">نئے طالب علموں کا اندراج</string>
     <string name="student_name">طالب علم کا نام</string>
+    <string name="student_records">طالب علموں کا ریکارڈ</string>
 </resources>
