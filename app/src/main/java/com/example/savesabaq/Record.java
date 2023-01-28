@@ -27,6 +27,13 @@ public class Record {
         this.manzil = manzil;
     }
 
+    public Record() {
+        this.date = getDateToString();
+        this.sabaq = 0;
+        this.sabqi = 0;
+        this.manzil = 0;
+    }
+
     public String getDate() {
         return date;
     }

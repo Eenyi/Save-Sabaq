@@ -133,6 +133,18 @@ public class DBHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
+    public Record getLastRow(Integer rollNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cr = db.rawQuery("SELECT * FROM "+ TABLE_RECORD +" ORDER BY r_date DESC LIMIT 1", null);
+        return new Record(
+                cr.getInt(0),
+                cr.getString(1),
+                cr.getInt(2),
+                cr.getInt(3),
+                cr.getInt(4)
+        );
+    }
 }
 
 

@@ -79,6 +79,10 @@ public class RecordView extends AppCompatActivity implements View.OnClickListene
                                     dialog.cancel();
                                     Toast.makeText(RecordView.this, "Fields should be greater than Zero!", Toast.LENGTH_SHORT).show();
                                 }
+                                else if (sabaq_val > 30 || manzil_val > 7) {
+                                    dialog.cancel();
+                                    Toast.makeText(RecordView.this, "Fields should not be out of range!", Toast.LENGTH_LONG).show();
+                                }
                                 else {
                                     //code here
                                     Record record = new Record(sabaq_val, sabaq_val - 1, manzil_val);
