@@ -61,14 +61,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addStudent_dialogue.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (db.addStudent(input.getText().toString())) {
-                            Toast.makeText(MainActivity.this, "Student Enrolled", Toast.LENGTH_SHORT).show();
+                        if (!input.getText().toString().equals("")) {
+                            if (db.addStudent(input.getText().toString())) {
+                                Toast.makeText(MainActivity.this, "Student Enrolled!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Error occured in enrolling!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else {
-                            Toast.makeText(MainActivity.this, "Error occured in enrolling", Toast.LENGTH_SHORT).show();
+                            dialog.cancel();
+                            Toast.makeText(MainActivity.this, "Empty name not allowed!", Toast.LENGTH_SHORT).show();
                         }
                         dialog.cancel();
                     }
+                });
+                addStudent_dialogue.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { dialog.cancel(); }
                 });
                 addStudent_dialogue.show();
                 break;
