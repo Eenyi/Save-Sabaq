@@ -29,6 +29,10 @@ public class StudentView extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Student selectedItem = (Student) parent.getAdapter().getItem(position);
+                Intent intent = new Intent(StudentView.this, RecordView.class);
+                intent.putExtra("student", selectedItem.getName());
+                intent.putExtra("rollNumber", selectedItem.getRollNumber().toString());
+                startActivity(intent);
             }
         });
     }
