@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addSabaq_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/sabaqNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/sabaq"
+        app:layout_constraintBottom_toTopOf="@+id/sabaqField"
+        app:layout_constraintEnd_toEndOf="@+id/sabaqField"
+        app:layout_constraintStart_toStartOf="@+id/sabaqField"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/manzilNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/manzil"
+        app:layout_constraintBottom_toTopOf="@+id/manzilField"
+        app:layout_constraintEnd_toEndOf="@+id/manzilField"
+        app:layout_constraintStart_toStartOf="@+id/manzilField"
+        app:layout_constraintTop_toBottomOf="@+id/sabaqField"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/sabaqField"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/manzilNumber"
+        app:layout_constraintEnd_toEndOf="@+id/manzilNumber"
+        app:layout_constraintStart_toStartOf="@+id/manzilNumber"
+        app:layout_constraintTop_toBottomOf="@+id/sabaqNumber"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/manzilField"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manzilNumber"
+        app:layout_constraintVertical_bias="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

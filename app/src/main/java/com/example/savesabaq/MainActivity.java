@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.addStudent:
                 //add Student Functionality
                 AlertDialog.Builder addStudent_dialogue = new AlertDialog.Builder(MainActivity.this);
-                addStudent_dialogue.setMessage(R.string.add_student_title);
                 LayoutInflater lf = this.getLayoutInflater();
                 View layout = lf.inflate(R.layout.add_record, (ViewGroup) findViewById(R.id.addRecord_layout));
                 addStudent_dialogue.setView(layout);
