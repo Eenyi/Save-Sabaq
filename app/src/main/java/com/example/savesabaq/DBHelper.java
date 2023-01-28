@@ -112,6 +112,27 @@ public class DBHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
+    public ArrayList<Record> getPerStudentRecords(Integer rollNumber) {
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cr = db.rawQuery("Select * from "+ TABLE_RECORD +" WHERE s_id = "+ rollNumber+ " ORDER BY r_sabaq, r_date DESC",null);
+            ArrayList<Record> recordsArrayList = new ArrayList<>();
+            if (cr.moveToFirst()) {
+                do {
+                    recordsArrayList.add(new Record(cr.getInt(0),
+                            cr.getString(1),
+                            cr.getInt(2),
+                            cr.getInt(3),
+                            cr.getInt(4)));
+                } while (cr.moveToNext());
+            }
+            return recordsArrayList;
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
 }
 
 

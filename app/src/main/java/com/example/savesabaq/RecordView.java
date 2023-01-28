@@ -2,6 +2,8 @@ package com.example.savesabaq;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,12 +17,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class RecordView extends AppCompatActivity implements View.OnClickListener {
     Intent intent;
     TextView recordHolder, rollnoHolder;
     ImageButton addPerRecord, homeNavigation;
     DBHelper db;
     Integer currentStudentRollNumber;
+    List<Record> currentRecords;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,15 @@ public class RecordView extends AppCompatActivity implements View.OnClickListene
         addPerRecord.setOnClickListener(this);
         homeNavigation = findViewById(R.id.homeNavigation);
         homeNavigation.setOnClickListener(this);
+        currentRecords = db.getPerStudentRecords(currentStudentRollNumber);
+        recyclerView = findViewById(R.id.currentRecordView);
+        recyclerView.setHasFixedSize(true);
+        //LinearLayoutManager GridLayoutManager
+        layoutManager = new LinearLayoutManager(RecordView.this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new myRecyclerViewAdapter(currentRecords) ;
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -56,8 +73,6 @@ public class RecordView extends AppCompatActivity implements View.OnClickListene
                         if (!sabaq.getText().toString().equals("") && !manzil.getText().toString().equals("")) {
                             int sabaq_val = 0, manzil_val = 0;
                             try {
-                                Log.d("sabaq", sabaq.getText().toString());
-                                Log.d("manzil", manzil.getText().toString());
                                 sabaq_val = Integer.parseInt(sabaq.getText().toString());
                                 manzil_val = Integer.parseInt(manzil.getText().toString());
                                 if (sabaq_val <= 0 || manzil_val <= 0) {

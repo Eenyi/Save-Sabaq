@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Record {
+    private Integer rollNumber = 0;
     private String date;
     private Integer sabaq;
     private Integer sabqi;
@@ -13,6 +14,14 @@ public class Record {
 
     public Record(Integer sabaq, Integer sabqi, Integer manzil) {
         this.date = getDateToString();
+        this.sabaq = sabaq;
+        this.sabqi = sabqi;
+        this.manzil = manzil;
+    }
+
+    public Record(Integer rollNumber, String date, Integer sabaq, Integer sabqi, Integer manzil) {
+        this.rollNumber = rollNumber;
+        this.date = date;
         this.sabaq = sabaq;
         this.sabqi = sabqi;
         this.manzil = manzil;

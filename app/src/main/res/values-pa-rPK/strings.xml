@@ -7,5 +7,6 @@
     <string name="student_name">Student Name</string>
     <string name="student_records">Students Records</string>
     <string name="sabaq">Sabaq Number</string>
+    <string name="sabqi">Sabqi Number</string>
     <string name="manzil">Manzil Number</string>
 </resources>

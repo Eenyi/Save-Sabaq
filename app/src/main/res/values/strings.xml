@@ -6,5 +6,6 @@
     <string name="student_name">طالب علم کا نام</string>
     <string name="student_records">طالب علموں کا ریکارڈ</string>
     <string name="sabaq">سبق نمبر</string>
+    <string name="sabqi">سبقی نمبر</string>
     <string name="manzil">منزل نمبر</string>
 </resources>
