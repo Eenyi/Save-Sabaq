@@ -17,27 +17,10 @@ import java.util.List;
 public class myRecyclerViewAdapter extends RecyclerView.Adapter<myRecyclerViewAdapter.myViewHandler> {
 
     List<Record> records;
+    Record previousRecord = null;
 
     public myRecyclerViewAdapter(List<Record> currentRecords) {
         this.records = currentRecords;
-    }
-
-    public Record getLatestRow() {
-        LocalDate max = LocalDate.of(1947, 8, 14);
-        Record record = new Record();
-        int result;
-        for (Record r:this.records) {
-            result = max.compareTo(convertToDate(r.getDate()));
-            if (result < 0) {
-                max = convertToDate(r.getDate());
-                record = r;
-            }
-        }
-        Log.d("record.getDate()", record.getDate());
-        Log.d("record.getsabaq()", record.getSabaq().toString());
-        Log.d("record.getsabqi()", record.getSabqi().toString());
-        Log.d("record.getDmanzil()", record.getManzil().toString());
-        return record;
     }
 
     public LocalDate convertToDate(String dateString) {
@@ -55,20 +38,35 @@ public class myRecyclerViewAdapter extends RecyclerView.Adapter<myRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull myViewHandler holder, int position) {
         holder.record = records.get(position);
+        Record r = null;
+        if (position+1 < records.size()) {
+            r = records.get(position+1);
+        }
         holder.date.setText(holder.record.getDate());
         holder.sabaqCount.setText(holder.record.getSabaq().toString());
         holder.sabqiCount.setText(holder.record.getSabqi().toString());
         holder.manzilCount.setText(holder.record.getManzil().toString());
-        Record record = getLatestRow();
-        if (record.getSabaq() != 0 && record.getSabaq() == holder.record.getSabaq()) {
+        if (previousRecord != null && previousRecord.getSabaq() == holder.record.getSabaq()) {
             holder.sabaqflag.setImageResource(R.drawable.ic_baseline_refresh_24);
         }
-        if (record.getSabqi() != 0 && record.getSabqi() == holder.record.getSabqi()) {
+        if (previousRecord != null && previousRecord.getSabqi() == holder.record.getSabqi()) {
             holder.sabqiflag.setImageResource(R.drawable.ic_baseline_refresh_24);
         }
-        if (record.getManzil() != 0 && record.getManzil() == holder.record.getManzil()) {
+        if (previousRecord != null && previousRecord.getManzil() == holder.record.getManzil()) {
             holder.manzilflag.setImageResource(R.drawable.ic_baseline_refresh_24);
         }
+        if (r != null) {
+            if (r.getSabaq() == holder.record.getSabaq()) {
+                holder.sabaqflag.setImageResource(R.drawable.ic_baseline_block_24);
+            }
+            if (r.getSabqi() == holder.record.getSabqi()) {
+                holder.sabqiflag.setImageResource(R.drawable.ic_baseline_block_24);
+            }
+            if (r.getManzil() == holder.record.getManzil()) {
+                holder.manzilflag.setImageResource(R.drawable.ic_baseline_block_24);
+            }
+        }
+        previousRecord = holder.record;
     }
 
     @Override
